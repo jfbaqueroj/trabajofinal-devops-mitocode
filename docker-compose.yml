@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  api:
+    image: juanfernandoct/calculapp.1.0.1
+    restart: always
+    ports:
+     - 8080:8080
+    networks:
+      - calcnet     
+ #Lo anterior despliega el api de la calculadora, funciona bien
+  
+  newman:
+    image: postman/newman
+    restart: always 
+    ports: 
+      - 8091:8095  
+    volumes:
+      - /home/juan/Documents/MitoCode/DevOps/TrabajoFinal/newman:/etc/newman      
+    command:
+       "run calculator.postman_collection.json"  
+    networks:
+      - calcnet 
+
+networks:      
+  calcnet:
+    driver: bridge
+      
+   
+     
