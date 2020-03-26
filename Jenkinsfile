@@ -42,7 +42,7 @@ pipeline{
 		stage('Setup del ambiente efimero'){
 			steps{
 				echo "construyendo el api ${apiVersion}"
-				sh 'docker build -t ${apiVersion} .'
+				sh "docker build -t ${apiVersion} ."
 				echo "Generar el archivo docker-compose"
 				sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
 				sh 'cat docker-compose -f docker-compose.dist up -d'
