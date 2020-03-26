@@ -12,7 +12,8 @@ services:
   restart: on-failure
   ports:
    - 8091:8095
-  volumes:
-   - /home/juan/Documents/MitoCode/DevOps/TrabajoFinal/newman:/etc/newman
+#  volumes:
+#   - /home/juan/Documents/MitoCode/DevOps/TrabajoFinal/newman:/etc/newman  
+#   "run calculator.postman_collection.json" // iba en la parte del command
   command:
-   "run calculator.postman_collection.json"
+    "run https://www.getpostman.com/collections/9ad6d772f5710996ecbd"

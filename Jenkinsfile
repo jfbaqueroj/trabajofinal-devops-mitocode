@@ -1,4 +1,5 @@
 apiVersion = '0.0.0'
+newmanVersion = 'postman/newman'
 
 pipeline{
 	agent any
@@ -45,6 +46,7 @@ pipeline{
 				sh "docker build -t ${apiVersion} ."
 				echo "Generar el archivo docker-compose"
 				sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
+				sh "sed -i 's@{{NEWMAN_DOCKER_IMAGE}}@${newmanVersion}@g' docker-compose.dist"
 				sh 'cat docker-compose.dist'
 				sh "docker-compose -f docker-compose.dist up -d"
 				sh "sleep 5"
