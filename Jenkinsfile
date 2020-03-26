@@ -24,17 +24,17 @@ pipeline{
 		}
 
 		stage('peparar el nombre del api api-calc'){
-			echo "Obteniendo versión con maven"
-			echo "antes: ${apiVersion}"
+			sh echo "Obteniendo versión con maven"
+			sh echo "antes: ${apiVersion}"
 			sh 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout > backend.txt'
 			script{
 				apiVersion = "${CONTAINER_API_PATH}:"+ readFile('backend.txt').trim()+ "-" + env.BUILD_NUMBER
 			}
-			echo "Despues: ${apiVersion}"
+			sh echo "Despues: ${apiVersion}"
 		}
 
 		stage('Setup del ambiente efimero'){
-			echo "construyendo el api ${apiVersion}"
+			sh echo "construyendo el api ${apiVersion}"
 			sh 'docker build -t ${apiVersion} .'
 			echo "Generar el archivo docker-compose"
 			sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
@@ -57,16 +57,16 @@ pipeline{
 
 post{
 	always{
-		"bajando el ambiente efimero..."
+		sh echo "bajando el ambiente efimero..."
 		sh "docker-compose -f docker-compose-dist down"
 	}
 	success{
-		echo "success"
+		sh echo "success"
 	}
 	unstable{
-		echo "unstable"
+		sh echo "unstable"
 	}
 	failure{
-		echo "failure"
+		sh echo "failure"
 	}
 }
