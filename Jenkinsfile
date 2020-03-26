@@ -27,24 +27,28 @@ pipeline{
 		stage('preparar el nombre del api api-calc'){
 			agent{
 				docker{image 'maven:3.6.3-jdk-11-slim'}
-			}	
+			}
+			steps{	
 			 echo "Obteniendo versión con maven"
 			 echo "antes: ${apiVersion}"
-			sh 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout > backend.txt'
-			script{
+			 sh 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout > backend.txt'
+			 script{
 				apiVersion = "${CONTAINER_API_PATH}:"+ readFile('backend.txt').trim()+ "-" + env.BUILD_NUMBER
 			}
 			 echo "Despues: ${apiVersion}"
+			}
 		}
 
 		stage('Setup del ambiente efimero'){
-			echo "construyendo el api ${apiVersion}"
-			sh 'docker build -t ${apiVersion} .'
-			echo "Generar el archivo docker-compose"
-			sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
-			sh 'cat docker-compose -f docker-compose.dist up -d'
-			sh 'sleep 5'
-			sh "docker-compose -f docker-compose.dist ps"
+			steps{
+				echo "construyendo el api ${apiVersion}"
+				sh 'docker build -t ${apiVersion} .'
+				echo "Generar el archivo docker-compose"
+				sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
+				sh 'cat docker-compose -f docker-compose.dist up -d'
+				sh 'sleep 5'
+				sh "docker-compose -f docker-compose.dist ps"
+			}
 		}
 
 		stage('Restart del ambiente compose'){
