@@ -4,7 +4,7 @@ pipeline{
 	agent any
 	
 	environment{
-	EPHEMERAL_HOST = "${params.EPHEMERAL_HOST}"}
+	EPHEMERAL_HOST = "${params.EPHEMERAL_HOST}"
 	CONTAINER_API_PATH = "${params.CONTAINER_API_PATH}"
 	API_EPHEMERAL_URL = "http://${EPHEMERAL_HOST}:9998"
 	}
@@ -54,6 +54,7 @@ pipeline{
 	}
 
 }
+
 post{
 	always{
 		"bajando el ambiente efimero..."
