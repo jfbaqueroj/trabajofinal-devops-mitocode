@@ -13,4 +13,4 @@ services:
   ports:
    - 8091:8095
   command:
-    "run https://www.getpostman.com/collections/9ad6d772f5710996ecbd"
+    "run https://www.getpostman.com/collections/9ad6d772f5710996ecbd --reporters cli"
