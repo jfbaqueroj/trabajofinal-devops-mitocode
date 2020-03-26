@@ -8,6 +8,7 @@ pipeline{
 	CONTAINER_API_PATH = "${params.CONTAINER_API_PATH}"
 	API_EPHEMERAL_URL = "http://${EPHEMERAL_HOST}:9998"
 	}
+
 	stages{
 		stage('Pruebas de Unidad'){
 			agent{
@@ -23,18 +24,21 @@ pipeline{
 			}
 		}
 
-		stage('peparar el nombre del api api-calc'){
-			sh echo "Obteniendo versión con maven"
-			sh echo "antes: ${apiVersion}"
+		stage('preparar el nombre del api api-calc'){
+			agent{
+				docker{image 'maven:3.6.3-jdk-11-slim'}
+			}	
+			 echo "Obteniendo versión con maven"
+			 echo "antes: ${apiVersion}"
 			sh 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout > backend.txt'
 			script{
 				apiVersion = "${CONTAINER_API_PATH}:"+ readFile('backend.txt').trim()+ "-" + env.BUILD_NUMBER
 			}
-			sh echo "Despues: ${apiVersion}"
+			 echo "Despues: ${apiVersion}"
 		}
 
 		stage('Setup del ambiente efimero'){
-			sh echo "construyendo el api ${apiVersion}"
+			echo "construyendo el api ${apiVersion}"
 			sh 'docker build -t ${apiVersion} .'
 			echo "Generar el archivo docker-compose"
 			sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
@@ -57,16 +61,16 @@ pipeline{
 
 post{
 	always{
-		sh echo "bajando el ambiente efimero..."
+		echo "bajando el ambiente efimero..."
 		sh "docker-compose -f docker-compose-dist down"
 	}
 	success{
-		sh echo "success"
+		echo "success"
 	}
 	unstable{
-		sh echo "unstable"
+		echo "unstable"
 	}
 	failure{
-		sh echo "failure"
+		echo "failure"
 	}
 }
