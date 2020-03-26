@@ -3,10 +3,16 @@ pipeline {
 	
 	environment{
 		EXTERNAL_HOST_API = "http://${params.EXTERNAL_HOST_API}:8080"
-		DOCKER_API = "juanfernandoct/calculapp:${env.BUILD_NUMBER}"
+		DOCKER_API_CALCULATOR = "juanfernandoct/calculapp:${env.BUILD_NUMBER}"
 	}
 	
 	stages{
-		stage{}
+		stage('Construir el api'){
+			sh "docker build -t ${DOCKER_API_CALCULATOR} ."
+			withCredentials([usernamePassword(credentialsIsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+				sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+				sh "docker push ${DOCKER_API_CALCULATOR}"
+			}		
+		}
 	}
 }
