@@ -48,7 +48,7 @@ pipeline{
 				sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
 				sh "sed -i 's@{{NEWMAN_DOCKER_IMAGE}}@${newmanVersion}@g' docker-compose.dist"
 				sh 'cat docker-compose.dist'
-				sh "docker-compose -f docker-compose.dist up"
+				sh "docker-compose -f docker-compose.dist up -d"				
 				sh "sleep 5"
 				sh "docker-compose -f docker-compose.dist ps"
 			}

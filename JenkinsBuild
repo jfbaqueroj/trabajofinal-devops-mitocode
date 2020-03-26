@@ -1,0 +1,12 @@
+pipeline {
+	agent any
+	
+	environment{
+		EXTERNAL_HOST_API = "http://${params.EXTERNAL_HOST_API}:8080"
+		DOCKER_API = "juanfernandoct/calculapp:${env.BUILD_NUMBER}"
+	}
+	
+	stages{
+		stage{}
+	}
+}
