@@ -5,8 +5,8 @@ services:
     image: juanfernandoct/calculapp.1.0.1
     restart: always
     ports:
-     - 8080:8080
-     
+     - 8000:8080
+#25032020: estaba el puerto como 8080:8080     
 #Pruebas del API con Newman
   newman:
     image: postman/newman
