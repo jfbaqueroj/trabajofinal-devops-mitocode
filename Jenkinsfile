@@ -4,9 +4,9 @@ pipeline{
 	agent any
 	
 	environment{
-	EPHEMERAL_HOST = "${params.EPHEMERAL_HOST}"
-	CONTAINER_API_PATH = "${params.CONTAINER_API_PATH}"
-	API_EPHEMERAL_URL = "http://${EPHEMERAL_HOST}:9998"
+		EPHEMERAL_HOST = "${params.EPHEMERAL_HOST}"
+		CONTAINER_API_PATH = "${params.CONTAINER_API_PATH}"
+		API_EPHEMERAL_URL = "http://${EPHEMERAL_HOST}:9998"
 	}
 
 	stages{
@@ -29,13 +29,13 @@ pipeline{
 				docker{image 'maven:3.6.3-jdk-11-slim'}
 			}
 			steps{	
-			 echo "Obteniendo versión con maven"
-			 echo "antes: ${apiVersion}"
-			 sh 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout > backend.txt'
-			 script{
-				apiVersion = "${CONTAINER_API_PATH}:"+ readFile('backend.txt').trim()+ "-" + env.BUILD_NUMBER
-			}
-			 echo "Despues: ${apiVersion}"
+				echo "Obteniendo versión con maven"
+				echo "antes: ${apiVersion}"
+				sh 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout > backend.txt'
+				script{
+					apiVersion = "${CONTAINER_API_PATH}:"+ readFile('backend.txt').trim()+ "-" + env.BUILD_NUMBER
+				}
+				echo "Despues: ${apiVersion}"
 			}
 		}
 
