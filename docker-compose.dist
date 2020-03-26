@@ -1,31 +1,8 @@
 version: '3.1'
-#Api Calculadorda
+
 services:
   api:
-#    image: juanfernandoct/calculapp.1.0.1
 	image: {{API_DOCKER_IMAGE}}
     restart: always
     ports:
      - 8000:8080
-#25032020: estaba el puerto como 8080:8080     
-
-#Pruebas del API con Newman
-#  newman:
-#    image: postman/newman
-#    restart: on-failure
-#    ports: 
-#      - 8091:8095  
-#    volumes:
-#      - /home/juan/Documents/MitoCode/DevOps/TrabajoFinal/newman:/etc/newman      
-#    command:
-#       "run calculator.postman_collection.json"  
-#FUNCIONA TODO LO ANTERIOR DE NEWMAN
-#    networks:
-#      - calcnet 
-#
-#networks:      
-#  calcnet:
-#    driver: bridge
-      
-   
-     
