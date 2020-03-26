@@ -67,7 +67,7 @@ pipeline{
 post{
 	always{
 		echo "bajando el ambiente efimero..."
-		sh "docker-compose -f docker-compose-dist down"
+		sh "docker-compose -f docker-compose.dist down"
 	}
 	success{
 		echo "success"
