@@ -44,7 +44,11 @@ pipeline{
 			steps{
 				sh 'pwd'
 				echo "construyendo el api ${apiVersion}"
+				sh "ACA1"
+				sh 'pwd'
 				sh "docker build -t ${apiVersion} ."
+				sh "ACA2"
+				sh 'pwd'
 				echo "Generar el archivo docker-compose"
 				sh "sed -i 's@{{API_DOCKER_IMAGE}}@${apiVersion}@g' docker-compose.dist"
 				sh "sed -i 's@{{NEWMAN_DOCKER_IMAGE}}@${newmanVersion}@g' docker-compose.dist"
