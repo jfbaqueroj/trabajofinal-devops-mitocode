@@ -17,7 +17,7 @@ pipeline{
 			}	
 			steps{
 				sh 'echo "Pruebas unitarias"'
-				sh 'cd /tmp && ls'
+				sh 'cd /temporal && ls'
 				sh 'echo "Obteniendo dependencias"'
 				sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
 				sh 'echo "Ejecución de  pruebas unitarias"'

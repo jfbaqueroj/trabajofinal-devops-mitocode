@@ -2,7 +2,6 @@ pipeline {
 	agent any
 	
 	environment{
-		EXTERNAL_HOST_API = "http://${params.EXTERNAL_HOST_API}:8080"
 		DOCKER_API_CALCULATOR = "juanfernandoct/calculapp:${env.BUILD_NUMBER}"
 	}
 	
