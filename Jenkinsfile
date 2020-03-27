@@ -17,7 +17,7 @@ pipeline{
 			}	
 			steps{
 				sh 'echo "Pruebas unitarias"'
-				sh 'cd /temporal && ls'
+				sh 'cd /tmp && ls'
 				sh 'echo "Obteniendo dependencias"'
 				sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
 				sh 'echo "Ejecución de  pruebas unitarias"'
@@ -42,6 +42,7 @@ pipeline{
 
 		stage('Setup del ambiente efimero'){
 			steps{
+				sh 'pwd'
 				echo "construyendo el api ${apiVersion}"
 				sh "docker build -t ${apiVersion} ."
 				echo "Generar el archivo docker-compose"
