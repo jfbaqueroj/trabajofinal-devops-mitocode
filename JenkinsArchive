@@ -16,22 +16,15 @@ pipeline {
             sh 'pwd'
             sh 'mvn clean package'
             sh 'echo "Ubicacion ACTUAL: "'
-            sh 'pwd'
-            sh 'echo "CAMBIANDO A TARGET: "'
-         	dir("target") {
-
-    			sh 'pwd'
-    			sh 'ls' 
-			}
-            sh 'echo "Fin del  step"'                        
-            }
+            sh 'pwd'            
+         	
 		}
 	
 	}
 	post {
         always {
         	
-            archiveArtifacts artifacts: '*.jar'
+            archiveArtifacts artifacts: '**/target/*.jar'
         }
     }
 }
