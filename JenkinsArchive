@@ -18,22 +18,17 @@ pipeline {
             sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'                     
             sh 'echo "Fin del  step"'
-            
             dir("target"){
                 sh 'echo "deste target!:"'
                 sh 'pwd'
-                sh 'ls'
-                sh 'cp *.jar' /var/lib/jenkins/workspace/Almacenar_JAR/target 
-            }
-               dir("/var/lib/jenkins/workspace/Almacenar_JAR/target"){
-                sh 'echo "desde el nuevo target!:"'
-                sh 'pwd'
-                sh 'ls'
-               
-            }                         
+            }                        
             }
         }
     
     }
-
+    post {
+        always {        
+           archiveArtifacts artifacts: '/var/lib/jenkins/workspace/Almacenar_JAR@2/target/**/*'
+        }
+    }
 }
