@@ -9,17 +9,14 @@ pipeline {
 		   docker{image 'maven:3.6.3-jdk-11-slim'}	
 		    }
 		    steps {
-			sh 'echo Creacion carpeta Archivo_JAR'
-			sh 'pwd'			   
-            sh 'mkdir Archivo_JAR'
-            sh 'pwd'
+			sh 'pwd'
             sh 'ls -la'
             sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
             sh 'echo "ejecucion de maven completa. Ubicacion actual: "'                
             sh 'pwd'
-            sh 'cp /target/*.jar /Archivo_JAR'                
-            sh 'echo "Copiado del jar en /Archivo_JAR completo"'
-                
+            sh 'cd /target'
+            sh 'pwd'
+            sh 'ls -la'                
             }
 		}
 	
