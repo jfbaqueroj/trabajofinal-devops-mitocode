@@ -16,13 +16,7 @@ pipeline {
             sh 'pwd'
             sh 'mvn clean package'
             sh 'echo "Ubicacion ACTUAL: "'
-            sh 'pwd'
-            sh 'ls -la'
-            sh 'echo "CONTENIDO DE /target: "'
-            sh 'ls -la /target'                
-            sh 'cd /target'
-            sh 'pwd'
-            sh 'ls -la /target'                
+            sh 'pwd'              
             }
 		}
 	
@@ -30,7 +24,7 @@ pipeline {
 	post {
         always {
         	
-            archiveArtifacts artifacts: '/target/*.jar', onlyIfSuccessful: true
+            archiveArtifacts artifacts: '/target/*.jar'
         }
     }
 }
