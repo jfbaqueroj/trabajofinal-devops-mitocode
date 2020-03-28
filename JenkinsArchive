@@ -23,8 +23,8 @@ pipeline {
 	}
 	post {
         always {
-        	sh 'cd /Archivo_JAR'
-            archiveArtifacts artifacts: '*.jar', onlyIfSuccessful: true
+        	
+            archiveArtifacts artifacts: '/target/*.jar', onlyIfSuccessful: true
         }
     }
 }
