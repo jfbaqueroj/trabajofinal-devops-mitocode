@@ -15,7 +15,7 @@ pipeline {
             sh 'echo "ejecucion de maven completa. Ubicacion actual: "'                
             sh 'pwd'
             sh 'mvn clean package'
-            sh 'Ubicacion ACTUAL: "'
+            sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'
             sh 'ls -la'
             sh 'echo "CONTENIDO DE /target: "'
