@@ -2,6 +2,13 @@ pipeline {
     agent any
             
     stages{
+    	
+    	stage('Set Workspace'){
+    		steps{
+    			ws("${WORKSPACE}"){
+    			sh 'pwd'
+    			}    		
+    	}
 
         stage('Archivar el JAR') {
 
@@ -9,7 +16,7 @@ pipeline {
            docker{image 'maven:3.6.3-jdk-11-slim'}  
             }
             steps {
-            ws("${WORKSPACE}"){                        
+                                   
             sh 'pwd'
             sh 'ls -la'
             sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
@@ -19,9 +26,7 @@ pipeline {
             sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'
             sh "ls -la ${pwd()}"                 
-            sh 'echo "Fin del  step"'
-          
-            }                        
+            sh 'echo "Fin del  step"'                                           
             }
         }
     
