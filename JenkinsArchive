@@ -9,8 +9,7 @@ pipeline {
            docker{image 'maven:3.6.3-jdk-11-slim'}  
             }
             steps {
-            ws("${WORKSPACE}"){            
-            cleanWs()
+            ws("${WORKSPACE}"){                        
             sh 'pwd'
             sh 'ls -la'
             sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
@@ -30,6 +29,7 @@ pipeline {
     post {
         always {        
            archiveArtifacts artifacts: 'target/**/*.jar'
+           cleanWs()
         }
     }
 }
