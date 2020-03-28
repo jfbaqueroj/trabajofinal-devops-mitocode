@@ -9,7 +9,7 @@ pipeline {
            docker{image 'maven:3.6.3-jdk-11-slim'}  
             }
             steps {
-            dir("params.${WORKSPACE}"){            
+            ws("params.${WORKSPACE}"){            
             cleanWs()
             sh 'pwd'
             sh 'ls -la'
