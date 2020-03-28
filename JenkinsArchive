@@ -9,7 +9,8 @@ pipeline {
 		   docker{image 'maven:3.6.3-jdk-11-slim'}	
 		    }
 		    steps {
-			sh 'echo Creacion carpeta Archivo_JAR'			   
+			sh 'echo Creacion carpeta Archivo_JAR'
+			sh 'pwd'			   
             sh 'mkdir Archivo_JAR'
             sh 'pwd'
             sh 'ls -la'
