@@ -2,13 +2,13 @@ pipeline {
     agent any
             
     stages{
-    	
-    	stage('Set Workspace'){
-    		steps{
-    			ws("${WORKSPACE}"){
-    			sh 'pwd'
-    			}    		
-    	}
+      
+      stage('Set Workspace'){
+        steps{
+          ws("${WORKSPACE}"){
+          sh 'pwd'
+          }       
+      }}
 
         stage('Archivar el JAR') {
 
@@ -28,9 +28,7 @@ pipeline {
             sh "ls -la ${pwd()}"                 
             sh 'echo "Fin del  step"'                                           
             }
-        }
-    
-    }
+        }  }  
     post {
         always {        
            archiveArtifacts artifacts: 'target/**/*.jar'
