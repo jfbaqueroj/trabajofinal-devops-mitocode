@@ -1,15 +1,15 @@
 pipeline {
-	agent any
-		
-	stages{
+    agent any
+        
+    stages{
 
-		stage('Archivar el JAR') {
+        stage('Archivar el JAR') {
 
-		 agent{
-		   docker{image 'maven:3.6.3-jdk-11-slim'}	
-		    }
-		    steps {
-			sh 'pwd'
+         agent{
+           docker{image 'maven:3.6.3-jdk-11-slim'}  
+            }
+            steps {
+            sh 'pwd'
             sh 'ls -la'
             sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
             sh 'echo "ejecucion de maven completa. Ubicacion actual: "'                
@@ -19,10 +19,10 @@ pipeline {
             sh 'pwd'                     
             sh 'echo "Fin del  step"'                        
             }
-		}
-	
-	}
-	post {
+        }
+    
+    }
+    post {
         always {        
           publishers {
         archiveArtifacts {
@@ -31,4 +31,4 @@ pipeline {
         }
         }
     }
-}
+}}
