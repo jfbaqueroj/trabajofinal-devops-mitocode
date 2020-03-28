@@ -18,8 +18,8 @@ pipeline {
             sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'                     
             sh 'echo "Fin del  step"'
-            dir("target"){
-                sh 'echo "deste target!:"'
+            dir("/var"){
+                sh 'echo "deste var!:"'
                 sh 'pwd'
             }                        
             }
