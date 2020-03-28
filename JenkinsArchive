@@ -24,9 +24,11 @@ pipeline {
 	}
 	post {
         always {        
-            archiveArtifacts{
-            	pattern('target/**/*.jar')
-            }
+          publishers {
+        archiveArtifacts {
+            pattern('target/**/*.jar')
+            
+        }
         }
     }
 }
