@@ -17,12 +17,13 @@ pipeline {
             sh 'mvn clean package'
             sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'
-            sh 'cp -r target Archivo_JAR'
-            sh 'cd Archivo_JAR'
-            sh 'pwd'
-            sh 'cd target'
-            sh 'pwd'
-            sh 'ls'              
+            sh 'echo "CAMBIANDO A TARGET: "'
+         	dir("target") {
+
+    			sh 'pwd'
+    			sh 'ls' 
+			}
+            sh 'echo "Fin del  step"'                        
             }
 		}
 	
