@@ -27,8 +27,12 @@ pipeline {
     
     }
     post {
-        always {        
+    	
+        always {
+        dir("/"){
+        	sh 'pwd'        
            archiveArtifacts artifacts: '**/*.jar'
+        }
         }
     }
 }
