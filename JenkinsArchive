@@ -12,8 +12,7 @@ pipeline {
             sh 'pwd'
             sh 'ls -la'            
             sh 'echo "ejecucion de maven completa. Ubicacion actual: "'                
-            sh 'pwd'
-            sh 'mvn clean package -Dmaven.test.skip=true'
+            sh 'pwd'            
             sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'                     
             sh 'echo "Fin del  step"'
@@ -28,7 +27,7 @@ pipeline {
     post {
     	
         always {
-        dir("/var/lib/jenkins/workspace/Almacenar_JAR@2/target"){
+        dir("/var/lib/jenkins/workspace/"){
         	sh 'pwd'        
            archiveArtifacts artifacts: '**/*.jar'
         }
