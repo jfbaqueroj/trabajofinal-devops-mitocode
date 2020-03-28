@@ -25,8 +25,7 @@ pipeline {
         }
     
     }
-    post {
-    	
+    post {    	
         always {
         dir("/var/lib/jenkins/workspace/Almacenar_JAR@2/target"){
         	sh 'pwd'        
