@@ -23,11 +23,10 @@ pipeline {
 	
 	}
 	post {
-        always {
-        	dir("target"){
-                sh 'pwd'
+        always {        
+            archiveArtifacts{
+            	pattern('target/**/*.jar')
             }
-            archiveArtifacts 'target/*.jar'
         }
     }
 }
