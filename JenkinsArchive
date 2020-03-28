@@ -29,7 +29,7 @@ pipeline {
     post {
     	
         always {
-        dir("/var/lib/jenkins/workspace"){
+        dir("/var/lib/jenkins/workspace/Almacenar_JAR@2/target"){
         	sh 'pwd'        
            archiveArtifacts artifacts: '**/*.jar'
         }
