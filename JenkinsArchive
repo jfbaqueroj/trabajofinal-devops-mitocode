@@ -11,6 +11,8 @@ pipeline {
 		    steps {
 			sh 'echo Creacion carpeta Archivo_JAR'			   
             sh 'mkdir Archivo_JAR'
+            sh 'pwd'
+            sh 'ls -la'
             sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
             sh 'echo "ejecucion de maven completa. Ubicacion actual: "'                
             sh 'pwd'
