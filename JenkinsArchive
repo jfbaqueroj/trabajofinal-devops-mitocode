@@ -27,7 +27,7 @@ pipeline {
         	dir("target"){
                 sh 'pwd'
             }
-            archiveArtifacts artifacts: "**/*.jar"
+            archiveArtifacts artifacts: "**.jar"
         }
     }
 }
