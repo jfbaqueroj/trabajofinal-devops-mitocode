@@ -17,7 +17,7 @@ pipeline {
             sh 'mvn clean package'
             sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'
-            sh 'cp target Archivo_JAR'
+            sh 'cp -r target Archivo_JAR'
             sh 'cd Archivo_JAR'
             sh 'pwd'
             sh 'cd target'
