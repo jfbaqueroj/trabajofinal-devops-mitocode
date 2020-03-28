@@ -28,7 +28,7 @@ pipeline {
     }
     post {
         always {        
-           archiveArtifacts artifacts: 'Almacenar_JAR@2/target/**/*'
+           archiveArtifacts artifacts: 'build/**/Almacenar_JAR@2/*.jar'
         }
     }
 }
