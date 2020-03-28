@@ -16,12 +16,10 @@ pipeline {
             sh 'pwd'
             sh 'mvn clean package -Dmaven.test.skip=true'
             sh 'echo "Ubicacion ACTUAL: "'
-            sh 'pwd'                     
-            sh 'echo "Fin del  step"'
-            def actual = '$(pwd)/target/*.jar'
-            def destino = '/var/lib/jenkins/workspace/target'
-            sh 'cp'+'" "'+actual+'" "'+destino
             sh 'pwd'
+            sh "ls -la ${pwd()}"                 
+            sh 'echo "Fin del  step"'
+
             dir("Almacenar_JAR"){
                 sh 'echo "deste Almacenar_JAR!:"'
                 sh 'pwd'
