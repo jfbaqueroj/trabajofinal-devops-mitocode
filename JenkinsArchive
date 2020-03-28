@@ -18,8 +18,8 @@ pipeline {
             sh 'echo "Ubicacion ACTUAL: "'
             sh 'pwd'                     
             sh 'echo "Fin del  step"'
-            dir("/var"){
-                sh 'echo "deste var!:"'
+            dir("Almacenar_JAR"){
+                sh 'echo "deste Almacenar_JAR!:"'
                 sh 'pwd'
             }                        
             }
@@ -28,7 +28,7 @@ pipeline {
     }
     post {
         always {        
-           archiveArtifacts artifacts: '/var/lib/jenkins/workspace/Almacenar_JAR@2/target/*'
+           archiveArtifacts artifacts: 'target/**/*.jar'
         }
     }
 }
