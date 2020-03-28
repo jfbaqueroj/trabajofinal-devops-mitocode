@@ -14,9 +14,12 @@ pipeline {
             sh 'mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline'
             sh 'echo "ejecucion de maven completa. Ubicacion actual: "'                
             sh 'pwd'
+            sh 'mvn clean package'
+            sh 'echo "CONTENIDO DE /target: "'
+            sh 'ls -la /target'                
             sh 'cd /target'
             sh 'pwd'
-            sh 'ls -la'                
+            sh 'ls -la /target'                
             }
 		}
 	
