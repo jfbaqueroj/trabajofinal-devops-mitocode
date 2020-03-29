@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     environment{
     	STACK_NAME = "${params.STACK_NAME}"
     	STACK_VERSION = "${params.STACK_VERSION}"
@@ -15,7 +16,7 @@ pipeline {
 
         	when{environment name:'DEPLOY', value: 'YES'}	
 	        	steps {
-	        		sh "ssh -o StrictHostKeyChecking =no -i ${APPLICATION_PEM} ec2-user@${APPLICATION_SERVER} \"docker service update --image ${DOCKERHUB_CALC} ${SERVICE_CAL}\""            
+	        		sh "ssh -o StrictHostKeyChecking=no -i ${APPLICATION_PEM} ec2-user@${APPLICATION_SERVER} \"docker service update --image ${DOCKERHUB_CALC} ${SERVICE_CAL}\""            
     			}
 		}
 	}
