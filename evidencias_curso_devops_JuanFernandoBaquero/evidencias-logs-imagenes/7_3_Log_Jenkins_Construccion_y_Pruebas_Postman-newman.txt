@@ -1,0 +1,930 @@
+Started by user juanfernando
+Obtained Jenkinsfile from git https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/build-test-calculator
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git # timeout=10
+Fetching upstream changes from https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision b5c56d025d0f75e5e850c67e61323c4f8e9e0016 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b5c56d025d0f75e5e850c67e61323c4f8e9e0016 # timeout=10
+Commit message: "Punto final. Se quito el espacio entre el StrictHostKeyChecking y el no, quedo: StrictHostKeyChecking=no ver#3"
+ > git rev-list --no-walk 32adc6add97f913b08775676d2682aa6cd598ff6 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Pruebas de Unidad)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/build-test-calculator@2
+[Pipeline] {
+[Pipeline] checkout
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git # timeout=10
+Fetching upstream changes from https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision b5c56d025d0f75e5e850c67e61323c4f8e9e0016 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b5c56d025d0f75e5e850c67e61323c4f8e9e0016 # timeout=10
+Commit message: "Punto final. Se quito el espacio entre el StrictHostKeyChecking y el no, quedo: StrictHostKeyChecking=no ver#3"
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+Using the existing docker config file.Removing blacklisted property: auths$ docker login -u juanfernandoct -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/workspace/build-test-calculator@2@tmp/f098563b-6d20-4260-807a-7d1175fcce39/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . maven:3.6.3-jdk-11-slim
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 996:992 -w /var/lib/jenkins/workspace/build-test-calculator@2 -v /var/lib/jenkins/workspace/build-test-calculator@2:/var/lib/jenkins/workspace/build-test-calculator@2:rw,z -v /var/lib/jenkins/workspace/build-test-calculator@2@tmp:/var/lib/jenkins/workspace/build-test-calculator@2@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** maven:3.6.3-jdk-11-slim cat
+$ docker top 82ea9287baa359586bc0351cd5e125d114a5c14a3e76b65b40d090e5ac41f6d3 -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ echo Pruebas unitarias
+Pruebas unitarias
+[Pipeline] sh
++ cd /tmp
++ ls
+hsperfdata_root
+[Pipeline] sh
++ echo Obteniendo dependencias
+Obteniendo dependencias
+[Pipeline] sh
++ mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.mitocode:mitocode-calculator >------------------
+[INFO] Building calculapp 2.2.4-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> maven-dependency-plugin:3.0.2:go-offline (default-cli) > :resolve-plugins @ mitocode-calculator >>>
+[INFO] 
+[INFO] --- maven-dependency-plugin:3.0.2:resolve-plugins (resolve-plugins) @ mitocode-calculator ---
+[INFO] 
+[INFO] The following plugins have been resolved:
+[INFO]    org.springframework.boot:spring-boot-maven-plugin:maven-plugin:2.2.4.RELEASE:runtime
+[INFO]       org.springframework.boot:spring-boot-maven-plugin:jar:2.2.4.RELEASE
+[INFO]       org.springframework.boot:spring-boot-loader-tools:jar:2.2.4.RELEASE
+[INFO]       org.springframework:spring-core:jar:5.2.3.RELEASE
+[INFO]       org.springframework:spring-jcl:jar:5.2.3.RELEASE
+[INFO]       org.apache.commons:commons-compress:jar:1.19
+[INFO]       org.apache.maven:maven-archiver:jar:3.4.0
+[INFO]       org.apache.maven.shared:maven-shared-utils:jar:3.2.1
+[INFO]       commons-io:commons-io:jar:2.5
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.25
+[INFO]       org.apache.maven:maven-artifact:jar:3.3.9
+[INFO]       org.apache.commons:commons-lang3:jar:3.9
+[INFO]       org.apache.maven:maven-core:jar:3.3.9
+[INFO]       org.apache.maven:maven-settings-builder:jar:3.3.9
+[INFO]       org.apache.maven:maven-builder-support:jar:3.3.9
+[INFO]       org.apache.maven:maven-repository-metadata:jar:3.3.9
+[INFO]       org.apache.maven:maven-model-builder:jar:3.3.9
+[INFO]       org.apache.maven:maven-aether-provider:jar:3.3.9
+[INFO]       org.eclipse.aether:aether-spi:jar:1.0.2.v20150114
+[INFO]       org.eclipse.aether:aether-impl:jar:1.0.2.v20150114
+[INFO]       org.eclipse.aether:aether-api:jar:1.0.2.v20150114
+[INFO]       org.eclipse.aether:aether-util:jar:1.0.2.v20150114
+[INFO]       org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.3.2
+[INFO]       org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.3.2
+[INFO]       com.google.inject:guice:jar:no_aop:4.0
+[INFO]       javax.inject:javax.inject:jar:1
+[INFO]       aopalliance:aopalliance:jar:1.0
+[INFO]       org.codehaus.plexus:plexus-classworlds:jar:2.5.2
+[INFO]       org.codehaus.plexus:plexus-component-annotations:jar:1.6
+[INFO]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[INFO]       org.sonatype.plexus:plexus-cipher:jar:1.4
+[INFO]       org.apache.maven:maven-model:jar:3.3.9
+[INFO]       org.apache.maven:maven-plugin-api:jar:3.3.9
+[INFO]       org.apache.maven:maven-settings:jar:3.3.9
+[INFO]       org.apache.maven.shared:maven-common-artifact-filters:jar:3.1.0
+[INFO]       org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[INFO]       org.codehaus.plexus:plexus-archiver:jar:3.7.0
+[INFO]       org.codehaus.plexus:plexus-io:jar:3.1.0
+[INFO]       org.iq80.snappy:snappy:jar:0.4
+[INFO]       org.tukaani:xz:jar:1.8
+[INFO]       org.codehaus.plexus:plexus-utils:jar:3.1.0
+[INFO]       org.sonatype.plexus:plexus-build-api:jar:0.0.7
+[INFO]       org.apache.maven.plugins:maven-shade-plugin:jar:3.2.1
+[INFO]       org.apache.maven.shared:maven-artifact-transfer:jar:0.10.0
+[INFO]       commons-codec:commons-codec:jar:1.13
+[INFO]       org.slf4j:slf4j-api:jar:1.7.30
+[INFO]       org.ow2.asm:asm:jar:7.0
+[INFO]       org.ow2.asm:asm-commons:jar:7.0
+[INFO]       org.ow2.asm:asm-tree:jar:7.0
+[INFO]       org.ow2.asm:asm-analysis:jar:7.0
+[INFO]       org.jdom:jdom2:jar:2.0.6
+[INFO]       org.apache.maven.shared:maven-dependency-tree:jar:3.0.1
+[INFO]       org.vafer:jdependency:jar:2.1.1
+[INFO]       org.ow2.asm:asm-util:jar:7.0-beta
+[INFO]       com.google.guava:guava:jar:19.0
+[INFO]    org.apache.maven.plugins:maven-clean-plugin:maven-plugin:3.1.0:runtime
+[INFO]       org.apache.maven.plugins:maven-clean-plugin:jar:3.1.0
+[INFO]       org.apache.maven:maven-plugin-api:jar:3.0
+[INFO]       org.apache.maven:maven-model:jar:3.0
+[INFO]       org.codehaus.plexus:plexus-utils:jar:2.0.4
+[INFO]       org.apache.maven:maven-artifact:jar:3.0
+[INFO]       org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2
+[INFO]       org.codehaus.plexus:plexus-component-annotations:jar:1.7.1
+[INFO]       org.codehaus.plexus:plexus-classworlds:jar:2.2.3
+[INFO]       org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[INFO]       org.apache.maven.shared:maven-shared-utils:jar:3.2.1
+[INFO]       commons-io:commons-io:jar:2.5
+[INFO]    org.apache.maven.plugins:maven-jar-plugin:maven-plugin:3.1.2:runtime
+[INFO]       org.apache.maven.plugins:maven-jar-plugin:jar:3.1.2
+[INFO]       org.apache.maven:maven-plugin-api:jar:3.0
+[INFO]       org.apache.maven:maven-model:jar:3.0
+[INFO]       org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[INFO]       org.apache.maven:maven-core:jar:3.0
+[INFO]       org.apache.maven:maven-settings:jar:3.0
+[INFO]       org.apache.maven:maven-settings-builder:jar:3.0
+[INFO]       org.apache.maven:maven-repository-metadata:jar:3.0
+[INFO]       org.apache.maven:maven-model-builder:jar:3.0
+[INFO]       org.apache.maven:maven-aether-provider:jar:3.0
+[INFO]       org.sonatype.aether:aether-impl:jar:1.7
+[INFO]       org.sonatype.aether:aether-spi:jar:1.7
+[INFO]       org.sonatype.aether:aether-api:jar:1.7
+[INFO]       org.sonatype.aether:aether-util:jar:1.7
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.14
+[INFO]       org.codehaus.plexus:plexus-classworlds:jar:2.2.3
+[INFO]       org.codehaus.plexus:plexus-component-annotations:jar:1.7.1
+[INFO]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[INFO]       org.sonatype.plexus:plexus-cipher:jar:1.4
+[INFO]       org.apache.maven:maven-artifact:jar:3.0
+[INFO]       org.apache.maven.shared:file-management:jar:3.0.0
+[INFO]       org.apache.maven.shared:maven-shared-io:jar:3.0.0
+[INFO]       org.apache.maven:maven-compat:jar:3.0
+[INFO]       org.apache.maven.wagon:wagon-provider-api:jar:2.10
+[INFO]       org.apache.maven:maven-archiver:jar:3.4.0
+[INFO]       commons-io:commons-io:jar:2.5
+[INFO]       org.apache.maven.shared:maven-shared-utils:jar:3.2.1
+[INFO]       org.codehaus.plexus:plexus-archiver:jar:4.1.0
+[INFO]       org.codehaus.plexus:plexus-io:jar:3.1.1
+[INFO]       org.apache.commons:commons-compress:jar:1.18
+[INFO]       org.iq80.snappy:snappy:jar:0.4
+[INFO]       org.tukaani:xz:jar:1.8
+[INFO]       org.codehaus.plexus:plexus-utils:jar:3.2.0
+[INFO]    org.apache.maven.plugins:maven-resources-plugin:maven-plugin:3.1.0:runtime
+[INFO]       org.apache.maven.plugins:maven-resources-plugin:jar:3.1.0
+[INFO]       org.apache.maven:maven-plugin-api:jar:3.0
+[INFO]       org.apache.maven:maven-artifact:jar:3.0
+[INFO]       org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[INFO]       org.apache.maven:maven-core:jar:3.0
+[INFO]       org.apache.maven:maven-settings:jar:3.0
+[INFO]       org.apache.maven:maven-settings-builder:jar:3.0
+[INFO]       org.apache.maven:maven-repository-metadata:jar:3.0
+[INFO]       org.apache.maven:maven-model-builder:jar:3.0
+[INFO]       org.apache.maven:maven-aether-provider:jar:3.0
+[INFO]       org.sonatype.aether:aether-impl:jar:1.7
+[INFO]       org.sonatype.aether:aether-spi:jar:1.7
+[INFO]       org.sonatype.aether:aether-api:jar:1.7
+[INFO]       org.sonatype.aether:aether-util:jar:1.7
+[INFO]       org.codehaus.plexus:plexus-classworlds:jar:2.2.3
+[INFO]       org.codehaus.plexus:plexus-component-annotations:jar:1.7.1
+[INFO]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[INFO]       org.sonatype.plexus:plexus-cipher:jar:1.4
+[INFO]       org.apache.maven:maven-model:jar:3.0
+[INFO]       org.codehaus.plexus:plexus-utils:jar:3.1.0
+[INFO]       org.apache.maven.shared:maven-filtering:jar:3.1.1
+[INFO]       org.apache.maven.shared:maven-shared-utils:jar:3.0.0
+[INFO]       com.google.code.findbugs:jsr305:jar:2.0.1
+[INFO]       org.sonatype.plexus:plexus-build-api:jar:0.0.7
+[INFO]       commons-io:commons-io:jar:2.5
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.24
+[INFO]    org.apache.maven.plugins:maven-site-plugin:maven-plugin:3.8.2:runtime
+[INFO]       org.apache.maven.plugins:maven-site-plugin:jar:3.8.2
+[INFO]       commons-logging:commons-logging:jar:1.1
+[INFO]       log4j:log4j:jar:1.2.12
+[INFO]       logkit:logkit:jar:1.0.1
+[INFO]       avalon-framework:avalon-framework:jar:4.1.3
+[INFO]       org.apache.maven.reporting:maven-reporting-exec:jar:1.4
+[INFO]       org.apache.maven.reporting:maven-reporting-api:jar:3.0
+[INFO]       org.apache.maven:maven-artifact:jar:3.0
+[INFO]       org.sonatype.aether:aether-util:jar:1.7
+[INFO]       org.eclipse.aether:aether-util:jar:0.9.0.M2
+[INFO]       org.apache.maven.shared:maven-shared-utils:jar:3.1.0
+[INFO]       org.apache.maven:maven-core:jar:3.0
+[INFO]       org.apache.maven:maven-repository-metadata:jar:3.0
+[INFO]       org.apache.maven:maven-model-builder:jar:3.0
+[INFO]       org.apache.maven:maven-aether-provider:jar:3.0
+[INFO]       org.sonatype.aether:aether-impl:jar:1.7
+[INFO]       org.sonatype.aether:aether-spi:jar:1.7
+[INFO]       org.sonatype.aether:aether-api:jar:1.7
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.14
+[INFO]       org.codehaus.plexus:plexus-component-annotations:jar:1.7.1
+[INFO]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[INFO]       org.sonatype.plexus:plexus-cipher:jar:1.4
+[INFO]       org.apache.maven:maven-model:jar:3.0
+[INFO]       org.apache.maven:maven-plugin-api:jar:3.0
+[INFO]       org.apache.maven:maven-settings:jar:3.0
+[INFO]       org.apache.maven:maven-settings-builder:jar:3.0
+[INFO]       org.apache.maven:maven-archiver:jar:3.1.1
+[INFO]       org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[INFO]       org.codehaus.plexus:plexus-archiver:jar:3.4
+[INFO]       org.codehaus.plexus:plexus-io:jar:2.7.1
+[INFO]       org.apache.commons:commons-compress:jar:1.11
+[INFO]       org.iq80.snappy:snappy:jar:0.4
+[INFO]       org.tukaani:xz:jar:1.5
+[INFO]       org.codehaus.plexus:plexus-i18n:jar:1.0-beta-10
+[INFO]       org.codehaus.plexus:plexus-utils:jar:3.0.24
+[INFO]       org.codehaus.plexus:plexus-classworlds:jar:2.5.2
+[INFO]       org.apache.maven.doxia:doxia-sink-api:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-logging-api:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-core:jar:1.9
+[INFO]       org.codehaus.plexus:plexus-container-default:jar:1.7.1
+[INFO]       org.apache.xbean:xbean-reflect:jar:3.7
+[INFO]       com.google.collections:google-collections:jar:1.0
+[INFO]       org.apache.httpcomponents:httpclient:jar:4.5.8
+[INFO]       commons-codec:commons-codec:jar:1.11
+[INFO]       org.apache.httpcomponents:httpcore:jar:4.4.11
+[INFO]       org.apache.maven.doxia:doxia-module-xhtml:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-module-xhtml5:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-module-apt:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-module-xdoc:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-module-fml:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-module-markdown:jar:1.9
+[INFO]       com.vladsch.flexmark:flexmark-all:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-abbreviation:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-admonition:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-anchorlink:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-aside:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-attributes:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-autolink:jar:0.42.8
+[INFO]       org.nibor.autolink:autolink:jar:0.6.0
+[INFO]       com.vladsch.flexmark:flexmark-ext-definition:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-emoji:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-enumerated-reference:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-escaped-character:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-footnotes:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-gfm-issues:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-gfm-strikethrough:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-gfm-tables:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-gfm-tasklist:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-gfm-users:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-gitlab:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-jekyll-front-matter:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-jekyll-tag:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-media-tags:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-macros:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-ins:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-xwiki-macros:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-superscript:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-tables:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-toc:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-typographic:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-wikilink:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-yaml-front-matter:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-ext-youtube-embedded:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-formatter:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-html-parser:jar:0.42.8
+[INFO]       org.jsoup:jsoup:jar:1.10.2
+[INFO]       com.vladsch.flexmark:flexmark-jira-converter:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-profile-pegdown:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-util:jar:0.42.8
+[INFO]       com.vladsch.flexmark:flexmark-youtrack-converter:jar:0.42.8
+[INFO]       org.apache.maven.doxia:doxia-module-confluence:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-module-docbook-simple:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-module-twiki:jar:1.9
+[INFO]       org.apache.maven.doxia:doxia-decoration-model:jar:1.9.1
+[INFO]       org.apache.maven.doxia:doxia-site-renderer:jar:1.9.1
+[INFO]       org.apache.maven.doxia:doxia-skin-model:jar:1.9.1
+[INFO]       org.codehaus.plexus:plexus-velocity:jar:1.2
+[INFO]       org.apache.velocity:velocity:jar:1.7
+[INFO]       commons-lang:commons-lang:jar:2.4
+[INFO]       org.apache.velocity:velocity-tools:jar:2.0
+[INFO]       commons-beanutils:commons-beanutils:jar:1.7.0
+[INFO]       commons-digester:commons-digester:jar:1.8
+[INFO]       commons-chain:commons-chain:jar:1.1
+[INFO]       commons-validator:commons-validator:jar:1.3.1
+[INFO]       dom4j:dom4j:jar:1.1
+[INFO]       oro:oro:jar:2.0.8
+[INFO]       sslext:sslext:jar:1.2-0
+[INFO]       org.apache.struts:struts-core:jar:1.3.8
+[INFO]       antlr:antlr:jar:2.7.2
+[INFO]       org.apache.struts:struts-taglib:jar:1.3.8
+[INFO]       org.apache.struts:struts-tiles:jar:1.3.8
+[INFO]       commons-collections:commons-collections:jar:3.2.2
+[INFO]       org.apache.maven.doxia:doxia-integration-tools:jar:1.9.1
+[INFO]       org.apache.maven.wagon:wagon-provider-api:jar:3.3.1
+[INFO]       org.eclipse.jetty:jetty-server:jar:9.2.28.v20190418
+[INFO]       javax.servlet:javax.servlet-api:jar:3.1.0
+[INFO]       org.eclipse.jetty:jetty-http:jar:9.2.28.v20190418
+[INFO]       org.eclipse.jetty:jetty-io:jar:9.2.28.v20190418
+[INFO]       org.eclipse.jetty:jetty-servlet:jar:9.2.28.v20190418
+[INFO]       org.eclipse.jetty:jetty-security:jar:9.2.28.v20190418
+[INFO]       org.eclipse.jetty:jetty-webapp:jar:9.2.28.v20190418
+[INFO]       org.eclipse.jetty:jetty-xml:jar:9.2.28.v20190418
+[INFO]       org.eclipse.jetty:jetty-util:jar:9.2.28.v20190418
+[INFO]       org.apache.commons:commons-lang3:jar:3.4
+[INFO]       commons-io:commons-io:jar:2.5
+[INFO]    org.apache.maven.plugins:maven-compiler-plugin:maven-plugin:3.8.1:runtime
+[INFO]       org.apache.maven.plugins:maven-compiler-plugin:jar:3.8.1
+[INFO]       org.apache.maven:maven-plugin-api:jar:3.0
+[INFO]       org.apache.maven:maven-model:jar:3.0
+[INFO]       org.sonatype.sisu:sisu-inject-plexus:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-inject-bean:jar:1.4.2
+[INFO]       org.sonatype.sisu:sisu-guice:jar:noaop:2.1.7
+[INFO]       org.apache.maven:maven-artifact:jar:3.0
+[INFO]       org.codehaus.plexus:plexus-utils:jar:2.0.4
+[INFO]       org.apache.maven:maven-core:jar:3.0
+[INFO]       org.apache.maven:maven-settings:jar:3.0
+[INFO]       org.apache.maven:maven-settings-builder:jar:3.0
+[INFO]       org.apache.maven:maven-repository-metadata:jar:3.0
+[INFO]       org.apache.maven:maven-model-builder:jar:3.0
+[INFO]       org.apache.maven:maven-aether-provider:jar:3.0
+[INFO]       org.sonatype.aether:aether-impl:jar:1.7
+[INFO]       org.sonatype.aether:aether-spi:jar:1.7
+[INFO]       org.sonatype.aether:aether-api:jar:1.7
+[INFO]       org.sonatype.aether:aether-util:jar:1.7
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.14
+[INFO]       org.codehaus.plexus:plexus-classworlds:jar:2.2.3
+[INFO]       org.codehaus.plexus:plexus-component-annotations:jar:1.7.1
+[INFO]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[INFO]       org.sonatype.plexus:plexus-cipher:jar:1.4
+[INFO]       org.apache.maven.shared:maven-shared-utils:jar:3.2.1
+[INFO]       commons-io:commons-io:jar:2.5
+[INFO]       org.apache.maven.shared:maven-shared-incremental:jar:1.1
+[INFO]       org.codehaus.plexus:plexus-java:jar:0.9.10
+[INFO]       org.ow2.asm:asm:jar:6.2
+[INFO]       com.thoughtworks.qdox:qdox:jar:2.0-M9
+[INFO]       org.codehaus.plexus:plexus-compiler-api:jar:2.8.4
+[INFO]       org.codehaus.plexus:plexus-compiler-manager:jar:2.8.4
+[INFO]       org.codehaus.plexus:plexus-compiler-javac:jar:2.8.4
+[INFO]    org.apache.maven.plugins:maven-surefire-plugin:maven-plugin:2.22.2:runtime
+[INFO]       org.apache.maven.plugins:maven-surefire-plugin:jar:2.22.2
+[INFO]       org.apache.maven.surefire:maven-surefire-common:jar:2.22.2
+[INFO]       org.apache.maven:maven-plugin-api:jar:2.2.1
+[INFO]       org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.5.2
+[INFO]       org.apache.maven.surefire:surefire-api:jar:2.22.2
+[INFO]       org.apache.maven.surefire:surefire-logger-api:jar:2.22.2
+[INFO]       org.apache.maven.surefire:surefire-booter:jar:2.22.2
+[INFO]       org.apache.maven:maven-artifact:jar:2.2.1
+[INFO]       org.codehaus.plexus:plexus-utils:jar:1.5.15
+[INFO]       org.apache.maven:maven-plugin-descriptor:jar:2.2.1
+[INFO]       org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[INFO]       junit:junit:jar:4.12
+[INFO]       org.hamcrest:hamcrest-core:jar:1.3
+[INFO]       org.apache.maven:maven-project:jar:2.2.1
+[INFO]       org.apache.maven:maven-settings:jar:2.2.1
+[INFO]       org.apache.maven:maven-profile:jar:2.2.1
+[INFO]       org.apache.maven:maven-artifact-manager:jar:2.2.1
+[INFO]       backport-util-concurrent:backport-util-concurrent:jar:3.1
+[INFO]       org.apache.maven:maven-plugin-registry:jar:2.2.1
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.11
+[INFO]       org.apache.maven:maven-model:jar:2.2.1
+[INFO]       org.apache.maven:maven-core:jar:2.2.1
+[INFO]       org.apache.maven:maven-plugin-parameter-documenter:jar:2.2.1
+[INFO]       org.apache.maven.wagon:wagon-http:jar:1.0-beta-6
+[INFO]       org.apache.maven.wagon:wagon-http-shared:jar:1.0-beta-6
+[INFO]       nekohtml:xercesMinimal:jar:1.9.6.2
+[INFO]       nekohtml:nekohtml:jar:1.9.6.2
+[INFO]       commons-httpclient:commons-httpclient:jar:3.1
+[INFO]       commons-codec:commons-codec:jar:1.2
+[INFO]       org.apache.maven.wagon:wagon-webdav-jackrabbit:jar:1.0-beta-6
+[INFO]       org.apache.jackrabbit:jackrabbit-webdav:jar:1.5.0
+[INFO]       org.apache.jackrabbit:jackrabbit-jcr-commons:jar:1.5.0
+[INFO]       org.slf4j:slf4j-nop:jar:1.5.3
+[INFO]       org.slf4j:slf4j-jdk14:jar:1.5.6
+[INFO]       org.slf4j:slf4j-api:jar:1.5.6
+[INFO]       org.slf4j:jcl-over-slf4j:jar:1.5.6
+[INFO]       org.apache.maven.reporting:maven-reporting-api:jar:3.0
+[INFO]       org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-6
+[INFO]       org.apache.maven:maven-repository-metadata:jar:2.2.1
+[INFO]       org.apache.maven:maven-error-diagnostics:jar:2.2.1
+[INFO]       org.apache.maven:maven-monitor:jar:2.2.1
+[INFO]       classworlds:classworlds:jar:1.1
+[INFO]       org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3
+[INFO]       org.sonatype.plexus:plexus-cipher:jar:1.4
+[INFO]       org.apache.maven:maven-toolchain:jar:2.2.1
+[INFO]       org.codehaus.plexus:plexus-java:jar:0.9.10
+[INFO]       org.ow2.asm:asm:jar:6.2
+[INFO]       com.thoughtworks.qdox:qdox:jar:2.0-M8
+[INFO]    org.apache.maven.plugins:maven-install-plugin:maven-plugin:2.5.2:runtime
+[INFO]       org.apache.maven.plugins:maven-install-plugin:jar:2.5.2
+[INFO]       org.apache.maven:maven-plugin-api:jar:2.2.1
+[INFO]       org.apache.maven:maven-project:jar:2.2.1
+[INFO]       org.apache.maven:maven-settings:jar:2.2.1
+[INFO]       org.apache.maven:maven-profile:jar:2.2.1
+[INFO]       org.apache.maven:maven-plugin-registry:jar:2.2.1
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.11
+[INFO]       org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[INFO]       junit:junit:jar:3.8.1
+[INFO]       classworlds:classworlds:jar:1.1-alpha-2
+[INFO]       org.apache.maven:maven-model:jar:2.2.1
+[INFO]       org.apache.maven:maven-artifact-manager:jar:2.2.1
+[INFO]       org.apache.maven:maven-repository-metadata:jar:2.2.1
+[INFO]       org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-6
+[INFO]       backport-util-concurrent:backport-util-concurrent:jar:3.1
+[INFO]       org.apache.maven:maven-artifact:jar:2.2.1
+[INFO]       commons-codec:commons-codec:jar:1.6
+[INFO]       org.apache.maven.shared:maven-shared-utils:jar:0.4
+[INFO]       com.google.code.findbugs:jsr305:jar:2.0.1
+[INFO]       org.codehaus.plexus:plexus-utils:jar:3.0.15
+[INFO]    org.apache.maven.plugins:maven-deploy-plugin:maven-plugin:2.8.2:runtime
+[INFO]       org.apache.maven.plugins:maven-deploy-plugin:jar:2.8.2
+[INFO]       org.apache.maven:maven-plugin-api:jar:2.2.1
+[INFO]       org.apache.maven:maven-project:jar:2.2.1
+[INFO]       org.apache.maven:maven-settings:jar:2.2.1
+[INFO]       org.apache.maven:maven-profile:jar:2.2.1
+[INFO]       org.apache.maven:maven-artifact-manager:jar:2.2.1
+[INFO]       org.apache.maven:maven-repository-metadata:jar:2.2.1
+[INFO]       org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-6
+[INFO]       backport-util-concurrent:backport-util-concurrent:jar:3.1
+[INFO]       org.apache.maven:maven-plugin-registry:jar:2.2.1
+[INFO]       org.codehaus.plexus:plexus-interpolation:jar:1.11
+[INFO]       org.codehaus.plexus:plexus-container-default:jar:1.0-alpha-9-stable-1
+[INFO]       junit:junit:jar:3.8.1
+[INFO]       classworlds:classworlds:jar:1.1-alpha-2
+[INFO]       org.apache.maven:maven-model:jar:2.2.1
+[INFO]       org.apache.maven:maven-artifact:jar:2.2.1
+[INFO]       org.codehaus.plexus:plexus-utils:jar:3.0.15
+[INFO] 
+[INFO] 
+[INFO] <<< maven-dependency-plugin:3.0.2:go-offline (default-cli) < :resolve-plugins @ mitocode-calculator <<<
+[INFO] 
+[INFO] 
+[INFO] --- maven-dependency-plugin:3.0.2:go-offline (default-cli) @ mitocode-calculator ---
+[INFO] Resolved: spring-boot-starter-web-2.2.4.RELEASE.jar
+[INFO] Resolved: spring-boot-starter-2.2.4.RELEASE.jar
+[INFO] Resolved: spring-boot-2.2.4.RELEASE.jar
+[INFO] Resolved: spring-boot-autoconfigure-2.2.4.RELEASE.jar
+[INFO] Resolved: spring-boot-starter-logging-2.2.4.RELEASE.jar
+[INFO] Resolved: logback-classic-1.2.3.jar
+[INFO] Resolved: logback-core-1.2.3.jar
+[INFO] Resolved: log4j-to-slf4j-2.12.1.jar
+[INFO] Resolved: log4j-api-2.12.1.jar
+[INFO] Resolved: jul-to-slf4j-1.7.30.jar
+[INFO] Resolved: jakarta.annotation-api-1.3.5.jar
+[INFO] Resolved: snakeyaml-1.25.jar
+[INFO] Resolved: spring-boot-starter-json-2.2.4.RELEASE.jar
+[INFO] Resolved: jackson-databind-2.10.2.jar
+[INFO] Resolved: jackson-core-2.10.2.jar
+[INFO] Resolved: jackson-datatype-jdk8-2.10.2.jar
+[INFO] Resolved: jackson-datatype-jsr310-2.10.2.jar
+[INFO] Resolved: jackson-module-parameter-names-2.10.2.jar
+[INFO] Resolved: spring-boot-starter-tomcat-2.2.4.RELEASE.jar
+[INFO] Resolved: tomcat-embed-core-9.0.30.jar
+[INFO] Resolved: tomcat-embed-el-9.0.30.jar
+[INFO] Resolved: tomcat-embed-websocket-9.0.30.jar
+[INFO] Resolved: spring-boot-starter-validation-2.2.4.RELEASE.jar
+[INFO] Resolved: jakarta.validation-api-2.0.2.jar
+[INFO] Resolved: hibernate-validator-6.0.18.Final.jar
+[INFO] Resolved: jboss-logging-3.4.1.Final.jar
+[INFO] Resolved: spring-web-5.2.3.RELEASE.jar
+[INFO] Resolved: spring-beans-5.2.3.RELEASE.jar
+[INFO] Resolved: spring-webmvc-5.2.3.RELEASE.jar
+[INFO] Resolved: spring-aop-5.2.3.RELEASE.jar
+[INFO] Resolved: spring-context-5.2.3.RELEASE.jar
+[INFO] Resolved: spring-expression-5.2.3.RELEASE.jar
+[INFO] Resolved: swagger-jersey-jaxrs-1.5.0.jar
+[INFO] Resolved: swagger-jaxrs-1.5.0.jar
+[INFO] Resolved: jackson-dataformat-yaml-2.10.2.jar
+[INFO] Resolved: jackson-dataformat-xml-2.10.2.jar
+[INFO] Resolved: jackson-module-jaxb-annotations-2.10.2.jar
+[INFO] Resolved: jakarta.xml.bind-api-2.3.2.jar
+[INFO] Resolved: jakarta.activation-api-1.2.1.jar
+[INFO] Resolved: stax2-api-4.2.jar
+[INFO] Resolved: woodstox-core-6.0.3.jar
+[INFO] Resolved: swagger-core-1.5.0.jar
+[INFO] Resolved: commons-lang3-3.9.jar
+[INFO] Resolved: jackson-datatype-joda-2.10.2.jar
+[INFO] Resolved: joda-time-2.10.5.jar
+[INFO] Resolved: validation-api-2.0.1.Final.jar
+[INFO] Resolved: jsr311-api-1.1.1.jar
+[INFO] Resolved: reflections-0.9.9.jar
+[INFO] Resolved: javassist-3.18.2-GA.jar
+[INFO] Resolved: annotations-2.0.1.jar
+[INFO] Resolved: jackson-jaxrs-json-provider-2.10.2.jar
+[INFO] Resolved: jackson-jaxrs-base-2.10.2.jar
+[INFO] Resolved: jersey-multipart-1.13.jar
+[INFO] Resolved: mimepull-1.6.jar
+[INFO] Resolved: jersey-servlet-1.13.jar
+[INFO] Resolved: jersey-client-1.13.jar
+[INFO] Resolved: jersey-core-1.13.jar
+[INFO] Resolved: jersey-server-1.13.jar
+[INFO] Resolved: asm-3.1.jar
+[INFO] Resolved: springfox-swagger2-2.9.2.jar
+[INFO] Resolved: swagger-annotations-1.5.20.jar
+[INFO] Resolved: swagger-models-1.5.20.jar
+[INFO] Resolved: jackson-annotations-2.10.2.jar
+[INFO] Resolved: springfox-spi-2.9.2.jar
+[INFO] Resolved: springfox-core-2.9.2.jar
+[INFO] Resolved: springfox-schema-2.9.2.jar
+[INFO] Resolved: springfox-swagger-common-2.9.2.jar
+[INFO] Resolved: springfox-spring-web-2.9.2.jar
+[INFO] Resolved: guava-20.0.jar
+[INFO] Resolved: classmate-1.5.1.jar
+[INFO] Resolved: slf4j-api-1.7.30.jar
+[INFO] Resolved: spring-plugin-core-1.2.0.RELEASE.jar
+[INFO] Resolved: spring-plugin-metadata-1.2.0.RELEASE.jar
+[INFO] Resolved: mapstruct-1.2.0.Final.jar
+[INFO] Resolved: springfox-swagger-ui-2.0.2.jar
+[INFO] Resolved: spring-boot-starter-test-2.1.6.RELEASE.jar
+[INFO] Resolved: spring-boot-test-2.2.4.RELEASE.jar
+[INFO] Resolved: spring-boot-test-autoconfigure-2.2.4.RELEASE.jar
+[INFO] Resolved: json-path-2.4.0.jar
+[INFO] Resolved: json-smart-2.3.jar
+[INFO] Resolved: accessors-smart-1.2.jar
+[INFO] Resolved: asm-5.0.4.jar
+[INFO] Resolved: hamcrest-core-2.1.jar
+[INFO] Resolved: hamcrest-2.1.jar
+[INFO] Resolved: hamcrest-library-2.1.jar
+[INFO] Resolved: jsonassert-1.5.0.jar
+[INFO] Resolved: android-json-0.0.20131108.vaadin1.jar
+[INFO] Resolved: spring-core-5.2.3.RELEASE.jar
+[INFO] Resolved: spring-jcl-5.2.3.RELEASE.jar
+[INFO] Resolved: spring-test-5.2.3.RELEASE.jar
+[INFO] Resolved: xmlunit-core-2.6.3.jar
+[INFO] Resolved: jaxb-api-2.3.1.jar
+[INFO] Resolved: javax.activation-api-1.2.0.jar
+[INFO] Resolved: h2-1.4.194.jar
+[INFO] Resolved: assertj-core-3.12.2.jar
+[INFO] Resolved: junit-4.13.jar
+[INFO] Resolved: mockito-core-3.3.0.jar
+[INFO] Resolved: byte-buddy-1.10.6.jar
+[INFO] Resolved: byte-buddy-agent-1.10.6.jar
+[INFO] Resolved: objenesis-2.6.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.412 s
+[INFO] Finished at: 2020-03-30T01:42:19Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] sh
++ echo Ejecución de  pruebas unitarias
+Ejecución de  pruebas unitarias
+[Pipeline] sh
++ mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.mitocode:mitocode-calculator >------------------
+[INFO] Building calculapp 2.2.4-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ mitocode-calculator ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ mitocode-calculator ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /var/lib/jenkins/workspace/build-test-calculator@2/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ mitocode-calculator ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/build-test-calculator@2/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ mitocode-calculator ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to /var/lib/jenkins/workspace/build-test-calculator@2/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ mitocode-calculator ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running app.SimpleCalculatorControllerTest
+01:42:31.078 [main] DEBUG org.springframework.test.context.junit4.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class app.SimpleCalculatorControllerTest]
+01:42:31.110 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+01:42:31.146 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+01:42:31.272 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [app.SimpleCalculatorControllerTest] from class [org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper]
+01:42:31.330 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [app.SimpleCalculatorControllerTest]: class path resource [app/SimpleCalculatorControllerTest-context.xml] does not exist
+01:42:31.333 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [app.SimpleCalculatorControllerTest]: class path resource [app/SimpleCalculatorControllerTestContext.groovy] does not exist
+01:42:31.335 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [app.SimpleCalculatorControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+01:42:31.526 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [app.SimpleCalculatorControllerTest]
+01:42:31.591 [main] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - @TestExecutionListeners is not present for class [app.SimpleCalculatorControllerTest]: using defaults.
+01:42:31.593 [main] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+01:42:31.636 [main] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/TransactionDefinition]
+01:42:31.640 [main] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+01:42:31.642 [main] INFO org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3de8f619, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@2ab4bc72, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@4e5ed836, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@eadd4fb, org.springframework.test.context.support.DirtiesContextTestExecutionListener@740fb309, org.springframework.test.context.event.EventPublishingTestExecutionListener@7bd7d6d6, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@43f02ef2, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@239a307b, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2a8448fa, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@6f204a1a, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2de56eb2]
+01:42:31.650 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [app.SimpleCalculatorControllerTest]
+01:42:31.655 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [app.SimpleCalculatorControllerTest]
+01:42:31.657 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [app.SimpleCalculatorControllerTest]
+01:42:31.664 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [app.SimpleCalculatorControllerTest]
+01:42:31.665 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [app.SimpleCalculatorControllerTest]
+01:42:31.665 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [app.SimpleCalculatorControllerTest]
+01:42:31.666 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [app.SimpleCalculatorControllerTest]
+01:42:31.674 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [app.SimpleCalculatorControllerTest]
+01:42:31.674 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [app.SimpleCalculatorControllerTest]
+01:42:31.678 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [app.SimpleCalculatorControllerTest]
+01:42:31.688 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@821330f testClass = SimpleCalculatorControllerTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6f43c82 testClass = SimpleCalculatorControllerTest, locations = '{}', classes = '{class com.mitocode.calculator.SimpleCalculatorApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true}', contextCustomizers = set[[ImportsContextCustomizer@5db6b9cd key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration, org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@54bff557, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7c711375, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@23c30a20, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@d32c7e8a, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@3454db96, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6e6f2380], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]], class annotated with @DirtiesContext [false] with mode [null].
+01:42:31.699 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [app.SimpleCalculatorControllerTest]
+01:42:31.703 [main] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [app.SimpleCalculatorControllerTest]
+01:42:31.722 [main] DEBUG org.springframework.test.context.support.DependencyInjectionTestExecutionListener - Performing dependency injection for test context [[DefaultTestContext@821330f testClass = SimpleCalculatorControllerTest, testInstance = app.SimpleCalculatorControllerTest@d23e042, testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6f43c82 testClass = SimpleCalculatorControllerTest, locations = '{}', classes = '{class com.mitocode.calculator.SimpleCalculatorApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true}', contextCustomizers = set[[ImportsContextCustomizer@5db6b9cd key = [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration, org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration, org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration, org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration, org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration, org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration, org.springframework.boot.autoconfigure.hateoas.HypermediaAutoConfiguration, org.springframework.boot.autoconfigure.http.HttpMessageConvertersAutoConfiguration, org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration, org.springframework.boot.autoconfigure.jsonb.JsonbAutoConfiguration, org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration, org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration, org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration, org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@54bff557, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@7c711375, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.autoconfigure.OverrideAutoConfigurationContextCustomizerFactory$DisableAutoConfigurationContextCustomizer@23c30a20, org.springframework.boot.test.autoconfigure.filter.TypeExcludeFiltersContextCustomizer@d32c7e8a, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@3454db96, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@6e6f2380], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map[[empty]]]].
+01:42:32.048 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.4.RELEASE)
+
+2020-03-30 01:42:32.750  INFO 159 --- [           main] app.SimpleCalculatorControllerTest       : Starting SimpleCalculatorControllerTest on 82ea9287baa3 with PID 159 (started by ? in /var/lib/jenkins/workspace/build-test-calculator@2)
+2020-03-30 01:42:32.760  INFO 159 --- [           main] app.SimpleCalculatorControllerTest       : No active profile set, falling back to default profiles: default
+2020-03-30 01:42:36.666  INFO 159 --- [           main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-03-30 01:42:37.627  WARN 159 --- [           main] uration$JodaDateTimeJacksonConfiguration : Auto-configuration of Jackson's Joda-Time integration is deprecated in favor of using java.time (JSR-310).
+2020-03-30 01:42:37.815  INFO 159 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-30 01:42:37.938  INFO 159 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-03-30 01:42:38.209  INFO 159 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2020-03-30 01:42:38.210  INFO 159 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2020-03-30 01:42:38.232  INFO 159 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 21 ms
+2020-03-30 01:42:38.294  INFO 159 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-03-30 01:42:38.369  INFO 159 --- [           main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-03-30 01:42:38.459  INFO 159 --- [           main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-03-30 01:42:38.965  INFO 159 --- [           main] app.SimpleCalculatorControllerTest       : Started SimpleCalculatorControllerTest in 6.903 seconds (JVM running for 9.287)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.29 s - in app.SimpleCalculatorControllerTest
+2020-03-30 01:42:39.838  INFO 159 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.131 s
+[INFO] Finished at: 2020-03-30T01:42:40Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+$ docker stop --time=1 82ea9287baa359586bc0351cd5e125d114a5c14a3e76b65b40d090e5ac41f6d3
+$ docker rm -f 82ea9287baa359586bc0351cd5e125d114a5c14a3e76b65b40d090e5ac41f6d3
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (preparar el nombre del api api-calc)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/build-test-calculator@2
+[Pipeline] {
+[Pipeline] checkout
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git # timeout=10
+Fetching upstream changes from https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision b5c56d025d0f75e5e850c67e61323c4f8e9e0016 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b5c56d025d0f75e5e850c67e61323c4f8e9e0016 # timeout=10
+Commit message: "Punto final. Se quito el espacio entre el StrictHostKeyChecking y el no, quedo: StrictHostKeyChecking=no ver#3"
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+Using the existing docker config file.Removing blacklisted property: auths$ docker login -u juanfernandoct -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/workspace/build-test-calculator@2@tmp/5a0ef739-39ae-4801-8174-309565cbc062/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . maven:3.6.3-jdk-11-slim
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 996:992 -w /var/lib/jenkins/workspace/build-test-calculator@2 -v /var/lib/jenkins/workspace/build-test-calculator@2:/var/lib/jenkins/workspace/build-test-calculator@2:rw,z -v /var/lib/jenkins/workspace/build-test-calculator@2@tmp:/var/lib/jenkins/workspace/build-test-calculator@2@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** maven:3.6.3-jdk-11-slim cat
+$ docker top 9ca66ac55e40b36036cf9e932b6546db14f600bd5efc7c3d5cb8b36376ddd576 -eo pid,comm
+[Pipeline] {
+[Pipeline] echo
+Obteniendo versión con maven
+[Pipeline] echo
+antes: 0.0.0
+[Pipeline] sh
++ mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+[Pipeline] script
+[Pipeline] {
+[Pipeline] readFile
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] echo
+Despues: juanfernandoct/calculapp:2.2.4-SNAPSHOT-32
+[Pipeline] }
+$ docker stop --time=1 9ca66ac55e40b36036cf9e932b6546db14f600bd5efc7c3d5cb8b36376ddd576
+$ docker rm -f 9ca66ac55e40b36036cf9e932b6546db14f600bd5efc7c3d5cb8b36376ddd576
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Setup del ambiente efimero)
+[Pipeline] echo
+construyendo el api juanfernandoct/calculapp:2.2.4-SNAPSHOT-32
+[Pipeline] sh
++ docker build -t juanfernandoct/calculapp:2.2.4-SNAPSHOT-32 .
+Sending build context to Docker daemon    470kB
+
+Step 1/15 : FROM maven:3.6.3-jdk-11-slim AS builder
+ ---> 828766b5e113
+Step 2/15 : WORKDIR /app
+ ---> Using cache
+ ---> 6fa2debdc739
+Step 3/15 : COPY pom.xml .
+ ---> Using cache
+ ---> 539c964f222d
+Step 4/15 : RUN mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline
+ ---> Using cache
+ ---> 720e788283a9
+Step 5/15 : COPY src ./src
+ ---> Using cache
+ ---> 8c39e8295f8a
+Step 6/15 : RUN ls -la ./src
+ ---> Using cache
+ ---> ba3cae7f495a
+Step 7/15 : RUN mvn clean package
+ ---> Using cache
+ ---> aac59437e7eb
+Step 8/15 : RUN ls -la /app
+ ---> Using cache
+ ---> 3e48bf286fb6
+Step 9/15 : FROM openjdk:11.0.6-jdk
+ ---> d29dd615eaf4
+Step 10/15 : LABEL maintainer="juanfernando"
+ ---> Using cache
+ ---> 715c5ca2672c
+Step 11/15 : WORKDIR /workspace
+ ---> Using cache
+ ---> 2ee8591f2145
+Step 12/15 : RUN ls -la /workspace
+ ---> Using cache
+ ---> e1801e2bcd86
+Step 13/15 : COPY --from=builder /app/target/*.jar app.jar
+ ---> Using cache
+ ---> 03ae92bf3beb
+Step 14/15 : RUN ls -la /workspace
+ ---> Using cache
+ ---> 72ae63f48612
+Step 15/15 : ENTRYPOINT exec java -jar /workspace/app.jar
+ ---> Using cache
+ ---> 576c32aaaa4a
+Successfully built 576c32aaaa4a
+Successfully tagged juanfernandoct/calculapp:2.2.4-SNAPSHOT-32
+[Pipeline] echo
+Generar el archivo docker-compose
+[Pipeline] sh
++ sed -i 's@{{API_DOCKER_IMAGE}}@juanfernandoct/calculapp:2.2.4-SNAPSHOT-32@g' docker-compose.dist
+[Pipeline] sh
++ sed -i 's@{{NEWMAN_DOCKER_IMAGE}}@postman/newman@g' docker-compose.dist
+[Pipeline] sh
++ cat docker-compose.dist
+version: '3.1'
+
+services:
+ api:
+  image: juanfernandoct/calculapp:2.2.4-SNAPSHOT-32
+  restart: always
+  ports:
+   - 8000:8080
+
+ newman:
+  image: postman/newman
+  restart: on-failure
+  ports:
+   - 8091:8095
+  command:
+    "run https://www.getpostman.com/collections/9ad6d772f5710996ecbd"
+[Pipeline] sh
++ docker-compose -f docker-compose.dist up -d
+Creating network "build-test-calculator_default" with the default driver
+Creating build-test-calculator_api_1 ... 
+Creating build-test-calculator_newman_1 ... 
+[2A[2K
+Creating build-test-calculator_api_1    ... [32mdone[0m
+[2B[1A[2K
+Creating build-test-calculator_newman_1 ... [32mdone[0m
+[1B
+[Pipeline] sh
++ sleep 5
+[Pipeline] sh
++ docker-compose -f docker-compose.dist ps
+             Name                           Command               State           Ports         
+------------------------------------------------------------------------------------------------
+build-test-calculator_api_1      /bin/sh -c exec java -jar  ...   Up      0.0.0.0:8000->8080/tcp
+build-test-calculator_newman_1   newman run https://www.get ...   Up      0.0.0.0:8091->8095/tcp
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Restart del ambiente compose)
+[Pipeline] sh
++ docker-compose -f docker-compose.dist down
+Stopping build-test-calculator_newman_1 ... 
+Stopping build-test-calculator_api_1    ... 
+[1A[2K
+Stopping build-test-calculator_api_1    ... [32mdone[0m
+[1B[2A[2K
+Stopping build-test-calculator_newman_1 ... [32mdone[0m
+[2BRemoving build-test-calculator_newman_1 ... 
+Removing build-test-calculator_api_1    ... 
+[2A[2K
+Removing build-test-calculator_newman_1 ... [32mdone[0m
+[2B[1A[2K
+Removing build-test-calculator_api_1    ... [32mdone[0m
+[1BRemoving network build-test-calculator_default
+[Pipeline] sh
++ docker-compose -f docker-compose.dist up -d
+Creating network "build-test-calculator_default" with the default driver
+Creating build-test-calculator_api_1 ... 
+Creating build-test-calculator_newman_1 ... 
+[2A[2K
+Creating build-test-calculator_api_1    ... [32mdone[0m
+[2B[1A[2K
+Creating build-test-calculator_newman_1 ... [32mdone[0m
+[1B
+[Pipeline] sh
++ sleep 10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+bajando el ambiente efimero...
+[Pipeline] sh
++ docker-compose -f docker-compose.dist down
+Stopping build-test-calculator_api_1    ... 
+Stopping build-test-calculator_newman_1 ... 
+[2A[2K
+Stopping build-test-calculator_api_1    ... [32mdone[0m
+[2B[1A[2K
+Stopping build-test-calculator_newman_1 ... [32mdone[0m
+[1BRemoving build-test-calculator_api_1    ... 
+Removing build-test-calculator_newman_1 ... 
+[2A[2K
+Removing build-test-calculator_api_1    ... [32mdone[0m
+[2B[1A[2K
+Removing build-test-calculator_newman_1 ... [32mdone[0m
+[1BRemoving network build-test-calculator_default
+[Pipeline] echo
+success
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

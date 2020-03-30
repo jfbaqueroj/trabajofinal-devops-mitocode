@@ -1,0 +1,130 @@
+Started by user juanfernando
+Obtained JenkinsBuild from git https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/build-publish-calculator
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git # timeout=10
+Fetching upstream changes from https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision b5c56d025d0f75e5e850c67e61323c4f8e9e0016 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b5c56d025d0f75e5e850c67e61323c4f8e9e0016 # timeout=10
+Commit message: "Punto final. Se quito el espacio entre el StrictHostKeyChecking y el no, quedo: StrictHostKeyChecking=no ver#3"
+ > git rev-list --no-walk 32adc6add97f913b08775676d2682aa6cd598ff6 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Construir el api)
+[Pipeline] sh
++ docker build -t juanfernandoct/calculapp:8 .
+Sending build context to Docker daemon  374.3kB
+
+Step 1/15 : FROM maven:3.6.3-jdk-11-slim AS builder
+ ---> 828766b5e113
+Step 2/15 : WORKDIR /app
+ ---> Using cache
+ ---> 6fa2debdc739
+Step 3/15 : COPY pom.xml .
+ ---> Using cache
+ ---> 539c964f222d
+Step 4/15 : RUN mvn -B -e -C -T 1C org.apache.maven.plugins:maven-dependency-plugin:3.0.2:go-offline
+ ---> Using cache
+ ---> 720e788283a9
+Step 5/15 : COPY src ./src
+ ---> Using cache
+ ---> 8c39e8295f8a
+Step 6/15 : RUN ls -la ./src
+ ---> Using cache
+ ---> ba3cae7f495a
+Step 7/15 : RUN mvn clean package
+ ---> Using cache
+ ---> aac59437e7eb
+Step 8/15 : RUN ls -la /app
+ ---> Using cache
+ ---> 3e48bf286fb6
+Step 9/15 : FROM openjdk:11.0.6-jdk
+ ---> d29dd615eaf4
+Step 10/15 : LABEL maintainer="juanfernando"
+ ---> Using cache
+ ---> 715c5ca2672c
+Step 11/15 : WORKDIR /workspace
+ ---> Using cache
+ ---> 2ee8591f2145
+Step 12/15 : RUN ls -la /workspace
+ ---> Using cache
+ ---> e1801e2bcd86
+Step 13/15 : COPY --from=builder /app/target/*.jar app.jar
+ ---> Using cache
+ ---> 03ae92bf3beb
+Step 14/15 : RUN ls -la /workspace
+ ---> Using cache
+ ---> 72ae63f48612
+Step 15/15 : ENTRYPOINT exec java -jar /workspace/app.jar
+ ---> Using cache
+ ---> 576c32aaaa4a
+Successfully built 576c32aaaa4a
+Successfully tagged juanfernandoct/calculapp:8
+[Pipeline] withCredentials
+Masking supported pattern matches of $USERNAME or $PASSWORD
+[Pipeline] {
+[Pipeline] sh
++ docker login -u **** -p ****
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] sh
++ docker push ****/calculapp:8
+The push refers to repository [docker.io/****/calculapp]
+ded728186c48: Preparing
+2b629b9f8af9: Preparing
+4186db990701: Preparing
+5b5fbf48ec75: Preparing
+832f129ebea4: Preparing
+6670e930ed33: Preparing
+c7f27a4eb870: Preparing
+e70dfb4c3a48: Preparing
+1c76bd0dc325: Preparing
+6670e930ed33: Waiting
+c7f27a4eb870: Waiting
+e70dfb4c3a48: Waiting
+1c76bd0dc325: Waiting
+832f129ebea4: Layer already exists
+2b629b9f8af9: Layer already exists
+5b5fbf48ec75: Layer already exists
+ded728186c48: Layer already exists
+4186db990701: Layer already exists
+c7f27a4eb870: Layer already exists
+1c76bd0dc325: Layer already exists
+6670e930ed33: Layer already exists
+e70dfb4c3a48: Layer already exists
+8: digest: sha256:ac850055cb5913623fc4d4c9444534109ced0cd4aa476729d4608fce534ad92f size: 2213
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

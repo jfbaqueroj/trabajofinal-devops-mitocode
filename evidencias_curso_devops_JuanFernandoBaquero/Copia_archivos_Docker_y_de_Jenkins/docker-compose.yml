@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+ api:
+  image: juanfernandoct/calculapp.1.0.1
+  restart: always
+  ports:
+   - 8000:8080
+
+ newman:
+  image: postman/newman
+  restart: on-failure
+  ports:
+   - 8091:8095
+#  volumes:
+#   - /home/juan/Documents/MitoCode/DevOps/TrabajoFinal/newman:/etc/newman  
+#   "run calculator.postman_collection.json" // iba en la parte del command
+  command:
+    "run https://www.getpostman.com/collections/9ad6d772f5710996ecbd"

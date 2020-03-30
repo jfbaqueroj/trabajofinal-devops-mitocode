@@ -1,0 +1,198 @@
+Started by user juanfernando
+Obtained JenkinsArchive from git https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Almacenar_JAR
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git # timeout=10
+Fetching upstream changes from https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 964134f20cf22e5913dd5f092e496732cdbb3f09 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 964134f20cf22e5913dd5f092e496732cdbb3f09 # timeout=10
+Commit message: "Otro intento ver#67"
+ > git rev-list --no-walk 6843823654b5c4e9a652f334d867888bc8be74c6 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Archivar el JAR)
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Almacenar_JAR@2
+[Pipeline] {
+[Pipeline] checkout
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git # timeout=10
+Fetching upstream changes from https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/jfbaqueroj/trabajofinal-devops-mitocode.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 964134f20cf22e5913dd5f092e496732cdbb3f09 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 964134f20cf22e5913dd5f092e496732cdbb3f09 # timeout=10
+Commit message: "Otro intento ver#67"
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+Using the existing docker config file.Removing blacklisted property: auths$ docker login -u juanfernandoct -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /var/lib/jenkins/workspace/Almacenar_JAR@2@tmp/6a0525c6-9264-4204-bd62-211bc130dcfe/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] sh
++ docker inspect -f . maven:3.6.3-jdk-11-slim
+.
+[Pipeline] withDockerContainer
+Jenkins does not seem to be running inside a container
+$ docker run -t -d -u 996:992 -w /var/lib/jenkins/workspace/Almacenar_JAR@2 -v /var/lib/jenkins/workspace/Almacenar_JAR@2:/var/lib/jenkins/workspace/Almacenar_JAR@2:rw,z -v /var/lib/jenkins/workspace/Almacenar_JAR@2@tmp:/var/lib/jenkins/workspace/Almacenar_JAR@2@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** maven:3.6.3-jdk-11-slim cat
+$ docker top 3cc7eecf45821648106d5ba3a203ab45ece2eaa4422a5b4ee02d8bfa1edcb245 -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/Almacenar_JAR@2
+[Pipeline] sh
++ ls -la
+total 48
+drwxrwxrwx 12  996  992 4096 Mar 28 07:25 .
+drwxr-xr-x  4 root root   56 Mar 28 07:25 ..
+-rw-r--r--  1  996  992 2211 Mar 28 05:32 .classpath
+drwxrwxrwx  8  996  992  162 Mar 28 07:25 .git
+drwxrwxrwx  3  996  992  148 Mar 28 05:32 .idea
+-rw-r--r--  1  996  992  680 Mar 28 05:32 .project
+drwxrwxrwx  2  996  992  163 Mar 28 05:32 .settings
+drwxrwxrwx  3  996  992   17 Mar 28 05:16 ?
+drwxrwxrwx  2  996  992    6 Mar 28 05:16 Almacenar_JAR
+drwxrwxrwx  2  996  992    6 Mar 28 05:29 Almacenar_JAR@tmp
+-rw-r--r--  1  996  992  439 Mar 28 05:32 Dockerfile
+-rw-r--r--  1  996  992  917 Mar 28 07:25 JenkinsArchive
+-rw-r--r--  1  996  992  464 Mar 28 05:32 JenkinsBuild
+-rw-r--r--  1  996  992 2036 Mar 28 05:32 Jenkinsfile
+-rw-r--r--  1  996  992  274 Mar 28 05:32 docker-compose.dist
+-rw-r--r--  1  996  992  440 Mar 28 05:32 docker-compose.yml
+drwxr-xr-x  3  996  992   17 Mar 28 06:09 params.
+-rw-r--r--  1  996  992 2878 Mar 28 05:32 pom.xml
+drwxrwxrwx  4  996  992   30 Mar 28 05:16 src
+drwxr-xr-x  8  996  992  203 Mar 28 07:17 target
+drwxr-xr-x  2  996  992    6 Mar 28 07:17 target@tmp
+-rw-r--r--  1  996  992  319 Mar 28 05:32 testing-compose.yml
+-rw-r--r--  1  996  992  204 Mar 28 05:32 testing.sh
+[Pipeline] sh
++ echo ejecucion de maven completa. Ubicacion actual: 
+ejecucion de maven completa. Ubicacion actual: 
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/Almacenar_JAR@2
+[Pipeline] sh
++ mvn clean package -Dmaven.test.skip=true
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.mitocode:mitocode-calculator >------------------
+[INFO] Building calculapp 2.2.4-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ mitocode-calculator ---
+[INFO] Deleting /var/lib/jenkins/workspace/Almacenar_JAR@2/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ mitocode-calculator ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ mitocode-calculator ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /var/lib/jenkins/workspace/Almacenar_JAR@2/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ mitocode-calculator ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ mitocode-calculator ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ mitocode-calculator ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ mitocode-calculator ---
+[INFO] Building jar: /var/lib/jenkins/workspace/Almacenar_JAR@2/target/app-final-2.2.4.jar.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.2.4.RELEASE:repackage (repackage) @ mitocode-calculator ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.316 s
+[INFO] Finished at: 2020-03-28T07:26:05Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] sh
++ echo Ubicacion ACTUAL: 
+Ubicacion ACTUAL: 
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/Almacenar_JAR@2
+[Pipeline] sh
++ echo Fin del  step
+Fin del  step
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/Almacenar_JAR@2/target
+[Pipeline] {
+[Pipeline] sh
++ echo deste target!:
+deste target!:
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/Almacenar_JAR@2/target
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+$ docker stop --time=1 3cc7eecf45821648106d5ba3a203ab45ece2eaa4422a5b4ee02d8bfa1edcb245
+$ docker rm -f 3cc7eecf45821648106d5ba3a203ab45ece2eaa4422a5b4ee02d8bfa1edcb245
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] dir
+Running in /var/lib/jenkins/workspace/Almacenar_JAR@2/target
+[Pipeline] {
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/Almacenar_JAR@2/target
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

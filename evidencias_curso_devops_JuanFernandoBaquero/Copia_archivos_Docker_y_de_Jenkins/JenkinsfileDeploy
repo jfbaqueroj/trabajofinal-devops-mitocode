@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    environment{
+    	STACK_NAME = "${params.STACK_NAME}"
+    	STACK_VERSION = "${params.STACK_VERSION}"
+    	SERVICE_CAL = "${STACK_NAME}_web"
+    	DEPLOY = "${params.DEPLOY}"
+    	APPLICATION_SERVER = "${params.APPLICATION_SERVER}"
+    	APPLICATION_PEM = "/var/lib/jenkins/pems/juanfernando2.pem"
+    	DOCKERHUB_CALC = "juanfernandoct/calculapp:${STACK_VERSION}"
+    }    
+	stages{
+
+    	stage('Deploy CalculAPP') {
+
+        	when{environment name:'DEPLOY', value: 'YES'}	
+	        	steps {
+	        		sh "ssh -o StrictHostKeyChecking=no -i ${APPLICATION_PEM} ec2-user@${APPLICATION_SERVER} \"docker service update --image ${DOCKERHUB_CALC} ${SERVICE_CAL}\""            
+    			}
+		}
+	}
+}

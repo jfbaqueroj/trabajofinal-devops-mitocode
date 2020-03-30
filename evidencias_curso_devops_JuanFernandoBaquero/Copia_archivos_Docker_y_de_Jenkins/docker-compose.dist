@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+ api:
+  image: {{API_DOCKER_IMAGE}}
+  restart: always
+  ports:
+   - 8000:8080
+
+ newman:
+  image: {{NEWMAN_DOCKER_IMAGE}}
+  restart: on-failure
+  ports:
+   - 8091:8095
+  command:
+    "run https://www.getpostman.com/collections/9ad6d772f5710996ecbd"

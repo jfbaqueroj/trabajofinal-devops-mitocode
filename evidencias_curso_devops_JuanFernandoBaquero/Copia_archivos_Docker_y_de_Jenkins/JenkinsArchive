@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+        
+    stages{
+
+        stage('Archivar el JAR') {
+
+         agent{
+           docker{image 'maven:3.6.3-jdk-11-slim'}  
+            }
+            steps {
+            sh 'pwd'
+            sh 'ls -la'            
+            sh 'echo "ejecucion de maven completa. Ubicacion actual: "'                
+            sh 'pwd'
+            sh 'mvn clean package -Dmaven.test.skip=true'            
+            sh 'echo "Ubicacion ACTUAL: "'
+            sh 'pwd'                     
+            sh 'echo "Fin del  step"'
+            dir("target"){
+                sh 'echo "deste target!:"'
+                sh 'pwd'
+            }                        
+            }
+        }
+    
+    }
+    post {    	
+        always {
+        dir("/var/lib/jenkins/workspace/Almacenar_JAR@2/target"){
+        	sh 'pwd'        
+           archiveArtifacts artifacts: '**/*.jar'
+        }
+        }
+    }
+}
